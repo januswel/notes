@@ -1,6 +1,6 @@
 base_url = "https://notes.januswel.com"
 title = "Notes"
-description = "januswel's notes"
+description = "januswel の雑記"
 compile_sass = false
 minify_html = true
 generate_feeds = true
@@ -21,7 +21,7 @@ theme = "catppuccin-mocha"
 
 [extra]
 author = "januswel"
-list_pages = false
+list_pages = true
 enable_search = false
 
 header_nav = [
