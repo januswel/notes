@@ -1,16 +1,29 @@
-# The URL the site will be built for
 base_url = "https://notes.januswel.com"
-
-# Whether to automatically compile all Sass files in the sass directory
+title = "Notes"
+description = "januswel's notes"
 compile_sass = false
+minify_html = true
+generate_feeds = true
+generate_sitemap = true
+theme = "anemone"
 
-# Whether to build a search index to be used later on by a JavaScript library
-build_search_index = false
+taxonomies = [
+    {name = "tags", feed = true, paginate_by = 10},
+]
 
 [markdown]
+render_emoji = true
+external_links_target_blank = true
+smart_punctuation = true
 
 [markdown.highlighting]
 theme = "catppuccin-mocha"
 
 [extra]
-# Put all your custom variables here
+author = "januswel"
+list_pages = false
+enable_search = false
+
+header_nav = [
+  { url = "/", name_en = "/home/" },
+]
