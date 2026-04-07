@@ -21,6 +21,7 @@ theme = "catppuccin-mocha"
 
 [extra]
 author = "januswel"
+author_url = "https://januswel.com"
 list_pages = true
 enable_search = false
 
