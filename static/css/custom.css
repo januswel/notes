@@ -1,20 +1,32 @@
-/* 見出しのジャンプ率を上げる */
+/* 見出しの余白 */
 h1 {
-  font-size: 2.2rem;
   margin-top: 0.5em;
   margin-bottom: 0.25rem;
 }
 
 h2 {
-  font-size: 1.8rem;
   margin-top: 3rem;
   margin-bottom: 0.25rem;
 }
 
 h3 {
-  font-size: 1.35rem;
   margin-top: 2rem;
   margin-bottom: 0.25rem;
+}
+
+/* 見出しのジャンプ率を上げる（タブレット以上） */
+@media (min-width: 721px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+  }
 }
 
 /* 見出しの # を階層に合わせる */
@@ -50,4 +62,9 @@ h4 + * {
 /* 段落の字下げ */
 p {
   text-indent: 1em;
+}
+
+/* 日本語の折り返しを自然にする */
+p, li {
+  text-wrap: auto;
 }
