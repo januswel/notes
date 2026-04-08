@@ -60,7 +60,7 @@ h4 + * {
 }
 
 /* 段落の字下げ */
-p {
+main p {
   text-indent: 1em;
 }
 
