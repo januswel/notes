@@ -27,5 +27,5 @@ default_og_image = "og/default.png"
 enable_search = false
 
 header_nav = [
-  { url = "/", name_en = "/home/" },
+  { url = "/", name_en = "januswel's notes" },
 ]
