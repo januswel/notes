@@ -1,0 +1,4 @@
+onlyBuiltDependencies:
+  - "@resvg/resvg-js"
+
+minimumReleaseAge: 2880

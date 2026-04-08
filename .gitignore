@@ -1,1 +1,4 @@
 public/
+static/og/*.png
+!static/og/default.png
+tools/og-image-gen/node_modules/

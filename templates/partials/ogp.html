@@ -1,0 +1,44 @@
+{# OGP Meta Tags #}
+{% if page %}
+  {% set og_title = page.title %}
+  {% set og_description = page.description | default(value=config.description) %}
+  {% set og_url = page.permalink %}
+  {% set og_type = "article" %}
+{% elif section %}
+  {% set og_title = section.title | default(value=config.title) %}
+  {% set og_description = section.description | default(value=config.description) %}
+  {% set og_url = section.permalink %}
+  {% set og_type = "website" %}
+{% else %}
+  {% set og_title = config.title %}
+  {% set og_description = config.description %}
+  {% set og_url = config.base_url %}
+  {% set og_type = "website" %}
+{% endif %}
+
+<meta name="description" content="{{ og_description }}">
+<meta property="og:title" content="{{ og_title }}">
+<meta property="og:description" content="{{ og_description }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:site_name" content="{{ config.title }}">
+<meta property="og:locale" content="ja_JP">
+
+{% if page %}
+  {% set og_image = config.base_url ~ "/og/" ~ page.slug ~ ".png" %}
+{% elif config.extra.default_og_image %}
+  {% set og_image = config.base_url ~ "/" ~ config.extra.default_og_image %}
+{% endif %}
+
+{% if og_image %}
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ og_image }}">
+{% else %}
+<meta name="twitter:card" content="summary">
+{% endif %}
+
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:description" content="{{ og_description }}">
