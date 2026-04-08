@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "pnpm exec tsx src/main.ts",
+    "generate": "npx tsx src/main.ts",
     "typecheck": "tsc --noEmit"
   },
   "engines": {

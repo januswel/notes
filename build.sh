@@ -2,8 +2,8 @@
 set -e
 
 cd tools/og-image-gen
-pnpm install
-pnpm generate
+npm install
+npm run generate
 cd ../..
 
 zola build
