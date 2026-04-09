@@ -2,7 +2,7 @@
 set -e
 
 cd tools/og-image-gen
-npm install
+npm clean-install
 npm run generate
 cd ../..
 
