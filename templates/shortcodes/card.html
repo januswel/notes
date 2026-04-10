@@ -1,0 +1,26 @@
+{%- set data = load_data(path="tools/link-card-gen/cache/cards.json", format="json") -%}
+{%- set parts = url | split(pat="/") -%}
+{%- set hostname = parts[2] -%}
+<div>
+{%- if url in data and data[url].status == "ok" -%}
+  {%- set record = data[url] -%}
+  {%- set title = record.title | default(value=hostname) -%}
+  {%- set site_name = record.siteName | default(value=hostname) -%}
+  <a class="link-card" href="{{ url | safe }}" target="_blank" rel="noreferrer noopener">
+    <div class="link-card__body">
+      <div class="link-card__title">{{ title }}</div>
+      {%- if record.description %}
+      <div class="link-card__description">{{ record.description }}</div>
+      {%- endif %}
+      <div class="link-card__meta">
+        <span class="link-card__site">{{ site_name }}</span>
+      </div>
+    </div>
+    {%- if record.image %}
+    <img class="link-card__image" src="{{ record.image | safe }}" alt="" loading="lazy" decoding="async">
+    {%- endif %}
+  </a>
+{%- else -%}
+  <a href="{{ url | safe }}" target="_blank" rel="noreferrer noopener">{{ url }}</a>
+{%- endif -%}
+</div>
