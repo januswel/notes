@@ -1,6 +1,6 @@
 base_url = "https://notes.januswel.com"
-title = "Notes"
-description = "januswel's notes"
+title = "januswel's notes"
+description = "思考過程"
 compile_sass = false
 minify_html = false
 generate_feeds = true
