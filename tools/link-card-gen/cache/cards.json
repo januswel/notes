@@ -7,9 +7,10 @@
   },
   "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646": {
     "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646",
-    "status": "failed",
-    "fetchedAt": "2026-04-14T14:04:28.818Z",
-    "error": "HTTP 403 Forbidden"
+    "status": "ok",
+    "fetchedAt": "2026-04-14T14:15:51.442Z",
+    "title": "Thinking—Fast, Slow, and Artificial: How AI is Reshaping Human Reasoning and the Rise of Cognitive Surrender",
+    "manual": true
   },
   "https://transformer-circuits.pub/2026/emotions/index.html": {
     "url": "https://transformer-circuits.pub/2026/emotions/index.html",

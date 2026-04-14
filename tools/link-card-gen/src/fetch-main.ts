@@ -27,6 +27,12 @@ async function processUrl(rawUrl: string, cache: CardCache): Promise<boolean> {
   const key = rawUrl;
   const existing = cache[key];
 
+  // 手動メンテナンスエントリは refresh フラグに関係なく常にスキップ
+  if (existing?.manual) {
+    console.log(`  manual (skip): ${key}`);
+    return false;
+  }
+
   // 既に成功キャッシュがあり、画像ファイルも残っているならスキップ
   if (existing && existing.status === "ok" && !REFRESH_ALL) {
     const imageOk = !existing.image || assetExists(assetsDir, existing.image);
