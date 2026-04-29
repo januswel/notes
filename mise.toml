@@ -8,3 +8,8 @@ run = "zola serve"
 [tasks."dev:mobile"]
 description = "LAN 上の実機から確認用"
 run = "zola serve --interface 0.0.0.0 --base-url http://mini.local"
+
+[tasks.fetch]
+description = "card / x-post の oEmbed / OG メタデータを取得・キャッシュ"
+dir = "tools/embed-gen"
+run = "npm run fetch --"
