@@ -1,2 +1,10 @@
 [tools]
 node = "24"
+
+[tasks.dev]
+description = "手元で確認用"
+run = "zola serve"
+
+[tasks."dev:mobile"]
+description = "LAN 上の実機から確認用"
+run = "zola serve --interface 0.0.0.0 --base-url http://mini.local"
