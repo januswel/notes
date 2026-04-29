@@ -5,25 +5,35 @@ import {
   existsSync,
   writeFileSync,
 } from "fs";
-import { join, resolve } from "path";
-import { globSync } from "glob";
-import { collectUrls } from "./collect-urls.js";
-import { loadCache, saveCache } from "./cache.js";
+import { join } from "path";
+import { collectUrls } from "../shared/collect-urls.js";
+import { loadCache, saveCache, type Cache } from "../shared/cache.js";
+import { touchMarkdownFiles } from "../shared/touch.js";
 import { extractMeta } from "./extract.js";
 import { fetchPage, downloadAsset, assetExists } from "./fetch-page.js";
-import type { CardCache, CardRecord } from "./types.js";
+import type { CardRecord } from "./types.js";
 
-const baseDir = resolve(import.meta.dirname, "../../..");
-const contentDir = join(baseDir, "content");
-const cachePath = join(import.meta.dirname, "../cache/cards.json");
-const assetsDir = join(baseDir, "static/link-cards");
+const SHORTCODE_PATTERN =
+  /\{\{\s*card\s*\(\s*url\s*=\s*"([^"]+)"\s*\)\s*\}\}/g;
+const TOUCH_PATTERN = /\{\{\s*card\s*\(/;
 const PUBLIC_PREFIX = "/link-cards";
 
-const args = new Set(process.argv.slice(2));
-const REFRESH_ALL = args.has("--refresh");
-const REFRESH_FAILED = REFRESH_ALL || args.has("--refresh-failed");
+type CardCache = Cache<CardRecord>;
 
-async function processUrl(rawUrl: string, cache: CardCache): Promise<boolean> {
+export interface RunOpts {
+  baseDir: string;
+  toolDir: string;
+  refreshAll: boolean;
+  refreshFailed: boolean;
+}
+
+async function processUrl(
+  rawUrl: string,
+  cache: CardCache,
+  assetsDir: string,
+  refreshAll: boolean,
+  refreshFailed: boolean
+): Promise<boolean> {
   const key = rawUrl;
   const existing = cache[key];
 
@@ -34,7 +44,7 @@ async function processUrl(rawUrl: string, cache: CardCache): Promise<boolean> {
   }
 
   // 既に成功キャッシュがあり、画像ファイルも残っているならスキップ
-  if (existing && existing.status === "ok" && !REFRESH_ALL) {
+  if (existing && existing.status === "ok" && !refreshAll) {
     const imageOk = !existing.image || assetExists(assetsDir, existing.image);
     if (imageOk) {
       console.log(`  cached: ${key}`);
@@ -43,7 +53,7 @@ async function processUrl(rawUrl: string, cache: CardCache): Promise<boolean> {
     console.log(`  re-download assets: ${key}`);
   }
 
-  if (existing && existing.status === "failed" && !REFRESH_FAILED) {
+  if (existing && existing.status === "failed" && !refreshFailed) {
     console.log(`  skip failed: ${key}`);
     return false;
   }
@@ -81,7 +91,7 @@ async function processUrl(rawUrl: string, cache: CardCache): Promise<boolean> {
   return true;
 }
 
-function cleanupOrphans(cache: CardCache): void {
+function cleanupOrphans(cache: CardCache, assetsDir: string): void {
   if (!existsSync(assetsDir)) return;
   const referenced = new Set<string>();
   for (const record of Object.values(cache)) {
@@ -102,29 +112,6 @@ function cleanupOrphans(cache: CardCache): void {
   if (removed > 0) console.log(`  cleaned up ${removed} orphan asset(s)`);
 }
 
-/**
- * cache に変更があったとき、`{{ card(` を含む md ファイルに同じ内容を書き戻して
- * 「Data 変更」イベントを発火させる。これにより `zola serve` が content 変更として
- * 検知し、該当ページを再レンダリングする。
- * 単なる mtime 更新（utimes）では Metadata イベントになり Zola serve が拾わないため、
- * writeFileSync で実体を書き直す必要がある。
- */
-function touchCardMarkdownFiles(contentDir: string): number {
-  const files = globSync(`${contentDir}/**/*.md`);
-  let touched = 0;
-  for (const file of files) {
-    const text = readFileSync(file, "utf-8");
-    if (/\{\{\s*card\s*\(/.test(text)) {
-      writeFileSync(file, text, "utf-8");
-      touched++;
-    }
-  }
-  return touched;
-}
-
-/**
- * マークダウン側で参照されていない（孤児になった）cache キーを削除する。
- */
 function pruneOrphanCacheKeys(cache: CardCache, urls: string[]): number {
   const referenced = new Set(urls);
   let removed = 0;
@@ -137,18 +124,22 @@ function pruneOrphanCacheKeys(cache: CardCache, urls: string[]): number {
   return removed;
 }
 
-async function main() {
-  console.log("link-card-gen: fetch phase");
-  const urls = collectUrls(contentDir);
+export async function runCards(opts: RunOpts): Promise<void> {
+  console.log("embed-gen[card]: fetch phase");
+  const contentDir = join(opts.baseDir, "content");
+  const cachePath = join(opts.toolDir, "cache/cards.json");
+  const assetsDir = join(opts.baseDir, "static/link-cards");
+
+  const urls = collectUrls(contentDir, SHORTCODE_PATTERN);
   console.log(`  found ${urls.length} card URL(s) in content/`);
 
-  const cache = loadCache(cachePath);
+  const cache = loadCache<CardRecord>(cachePath);
   let mutated = false;
 
   for (const url of urls) {
     try {
-      if (await processUrl(url, cache)) mutated = true;
-      // 礼儀: 連続 fetch を避ける
+      if (await processUrl(url, cache, assetsDir, opts.refreshAll, opts.refreshFailed))
+        mutated = true;
       await new Promise((r) => setTimeout(r, 250));
     } catch (err) {
       console.error(`unexpected error for ${url}:`, err);
@@ -161,21 +152,14 @@ async function main() {
     mutated = true;
   }
 
-  cleanupOrphans(cache);
+  cleanupOrphans(cache, assetsDir);
   saveCache(cachePath, cache);
   console.log(`  wrote ${cachePath}`);
 
   if (mutated) {
-    const touched = touchCardMarkdownFiles(contentDir);
+    const touched = touchMarkdownFiles(contentDir, TOUCH_PATTERN);
     if (touched > 0) {
-      console.log(
-        `  touched ${touched} markdown file(s) for zola serve reload`
-      );
+      console.log(`  touched ${touched} markdown file(s) for zola serve reload`);
     }
   }
 }
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});

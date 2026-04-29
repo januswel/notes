@@ -1,11 +1,11 @@
 {
-  "name": "link-card-gen",
+  "name": "embed-gen",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "fetch": "npx tsx src/fetch-main.ts",
+    "fetch": "npx tsx src/main.ts",
     "typecheck": "tsc --noEmit"
   },
   "engines": {

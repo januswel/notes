@@ -15,5 +15,3 @@ export interface CardRecord {
    *  bot 対策で自動取得できないサイト向けに、手動でメタ情報をメンテナンスするエントリに使う。 */
   manual?: boolean;
 }
-
-export type CardCache = Record<string, CardRecord>;

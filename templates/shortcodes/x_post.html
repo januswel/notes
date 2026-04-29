@@ -1,0 +1,8 @@
+{%- set data = load_data(path="tools/embed-gen/cache/posts.json", format="json") -%}
+{%- if url in data and data[url].status == "ok" -%}
+{{ data[url].html | safe }}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{%- else -%}
+<blockquote class="twitter-tweet"><a href="{{ url | safe }}">View post on X</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{%- endif -%}
