@@ -129,36 +129,52 @@ export async function runPreprocess(opts: PreprocessOpts): Promise<void> {
 
 export async function runWatcher(opts: PreprocessOpts): Promise<void> {
   const { srcDir, outDir } = opts;
+
+  // 起動時に一度同期して orphan 掃除 + content/ を完全な状態にしてから watch
+  await runPreprocess(opts);
+
   console.log(`embed-gen[preprocess]: watching ${srcDir}`);
 
   const watcher = chokidar.watch(srcDir, {
-    ignoreInitial: false,
+    ignoreInitial: true,
     persistent: true,
   });
 
   function onFile(srcPath: string): void {
-    const rel = relative(srcDir, srcPath);
-    const outPath = join(outDir, rel);
-    if (processFile(srcPath, outPath)) {
-      console.log(`[preprocess] write: ${rel}`);
+    try {
+      const rel = relative(srcDir, srcPath);
+      const outPath = join(outDir, rel);
+      if (processFile(srcPath, outPath)) {
+        console.log(`[preprocess] write: ${rel}`);
+      }
+    } catch (err) {
+      console.error(`[preprocess] error for ${srcPath}:`, err);
     }
   }
 
   function onUnlink(srcPath: string): void {
-    const rel = relative(srcDir, srcPath);
-    const outPath = join(outDir, rel);
-    if (existsSync(outPath)) {
-      rmSync(outPath);
-      console.log(`[preprocess] remove: ${rel}`);
+    try {
+      const rel = relative(srcDir, srcPath);
+      const outPath = join(outDir, rel);
+      if (existsSync(outPath)) {
+        rmSync(outPath);
+        console.log(`[preprocess] remove: ${rel}`);
+      }
+    } catch (err) {
+      console.error(`[preprocess] error removing ${srcPath}:`, err);
     }
   }
 
   function onUnlinkDir(srcPath: string): void {
-    const rel = relative(srcDir, srcPath);
-    const outPath = join(outDir, rel);
-    if (existsSync(outPath)) {
-      rmSync(outPath, { recursive: true });
-      console.log(`[preprocess] remove dir: ${rel}`);
+    try {
+      const rel = relative(srcDir, srcPath);
+      const outPath = join(outDir, rel);
+      if (existsSync(outPath)) {
+        rmSync(outPath, { recursive: true });
+        console.log(`[preprocess] remove dir: ${rel}`);
+      }
+    } catch (err) {
+      console.error(`[preprocess] error removing dir ${srcPath}:`, err);
     }
   }
 
@@ -166,6 +182,7 @@ export async function runWatcher(opts: PreprocessOpts): Promise<void> {
   watcher.on("change", onFile);
   watcher.on("unlink", onUnlink);
   watcher.on("unlinkDir", onUnlinkDir);
+  watcher.on("error", (err) => console.error("[preprocess] watcher error:", err));
 
   await new Promise<void>((resolve) => {
     process.on("SIGINT", () => {
