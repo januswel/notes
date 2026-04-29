@@ -2,12 +2,22 @@
 node = "24"
 
 [tasks.dev]
-description = "手元で確認用"
-run = "zola serve"
+description = "preprocess watch + zola serve"
+run = """
+(cd tools/embed-gen && npm run watch) &
+WATCHER=$!
+trap "kill $WATCHER 2>/dev/null" EXIT
+zola serve
+"""
 
 [tasks."dev:mobile"]
-description = "LAN 上の実機から確認用"
-run = "zola serve --interface 0.0.0.0 --base-url http://mini.local"
+description = "preprocess watch + zola serve (LAN 公開)"
+run = """
+(cd tools/embed-gen && npm run watch) &
+WATCHER=$!
+trap "kill $WATCHER 2>/dev/null" EXIT
+zola serve --interface 0.0.0.0 --base-url http://mini.local
+"""
 
 [tasks.fetch]
 description = "card / x-post の oEmbed / OG メタデータを取得・キャッシュ"

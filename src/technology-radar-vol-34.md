@@ -5,7 +5,7 @@ date = 2026-04-28T23:30:00+09:00
 
 [2026 年 4 月 15 日公開](https://www.thoughtworks.com/content/dam/thoughtworks/documents/radar/2026/04/tr_technology_radar_vol_34_en.pdf)。
 
-{{ card(url="https://www.thoughtworks.com/radar") }}
+https://www.thoughtworks.com/radar
 
 [Preview は YouTube で公開されている](https://www.youtube.com/playlist?list=PL8f-F_Zx8XA-mWFSMGFbXx4UYWZIjFxy4)。
 
@@ -67,23 +67,23 @@ MCP の代わりに CLI や Skills を使うべき、一般に配布されてい
 
 次の引用ポストと、その元ポストが発祥。
 
-{{ x_post(url="https://x.com/karpathy/status/1937902205765607626") }}
+https://x.com/karpathy/status/1937902205765607626
 
 Coding Agent のコンテキストエンジニアリングについては次が詳しい。
 
-{{ card(url="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents") }}
+https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
 
 最近はコンテキストを管理するために、ドメイン知識を必要な際に呼び出せるようにパッケージングする、という発想で Agent Skills が出現した。
 
-{{ card(url="https://agentskills.io/specification") }}
+https://agentskills.io/specification
 
 精度よくコンテキスト圧縮をする技術も研究されているようだ。これは coding agent 向けの話題。
 
-{{ card(url="https://arxiv.org/abs/2601.07190") }}
+https://arxiv.org/abs/2601.07190
 
 LLM を組み込んだアプリケーションを構築している場合はプロンプトのキャッシュ機能がコスト / レイテンシーともに効くだろうとのこと。精度関係ない話しになっとるやんけ。
 
-{{ card(url="https://platform.claude.com/docs/en/build-with-claude/prompt-caching") }}
+https://platform.claude.com/docs/en/build-with-claude/prompt-caching
 
 さて、コンテキストエンジニアリングは一過性のものではなく、将来的にずっと役立つ概念だ。言ってみればメモリー管理のようなもので、 C 言語でメモリーアロケーションから開放まで面倒をみていた時代から、スマートポインター、ガベージコレクションと徐々に意識しなくて良いものになってきた。が、メモリーに関する知識を知っているかどうかが課題解決につながる場合がまだある。これと同じ感じになっていく可能性が高い。
 
@@ -137,7 +137,7 @@ Passkey について特に説明することもないだろう。
 
 日本ではタイムリーに Passkey が認証の第一選択肢になってきている。
 
-{{ card(url="https://news.yahoo.co.jp/articles/1643f26a3944aa20c151040410a3122157cb66c7") }}
+https://news.yahoo.co.jp/articles/1643f26a3944aa20c151040410a3122157cb66c7
 
 Passkey 登録したデバイスを紛失や破損したときにどうアカウントを復旧するか、というあたりが今後の課題になる。[ユーザー側では複数デバイスに Passkey 登録しておく、プラットフォーム側では本人確認を徹底するなど](https://www.passkeycentral.org/passkey-roll-out-guides/prevent-phishing/#phishing-resistant-methods)。
 
@@ -165,7 +165,7 @@ AGENTS.md や CLAUDE.md など、エージェント指示は肥大化しがち�
 
 この点について、指示を生成させるより手書きしたほうが精度向上に寄与する、という研究結果が出ている。
 
-{{ card(url="https://arxiv.org/abs/2602.11988") }}
+https://arxiv.org/abs/2602.11988
 
 直感的にも妥当で、 LLM は人間好みの冗長な文章を生成するので指示の情報密度が薄い。生成させたものに手を入れるだけでもいくらかマシになるだろう。
 
@@ -198,7 +198,7 @@ blip ではサンドボックス内での実験と、作成済みのもののカ
 
 ただ、これももう古くて、今年 3 月には intent debt: 意図負債がそれらの源泉だという因果関係が示された。
 
-{{ card(url="https://arxiv.org/abs/2603.22106") }}
+https://arxiv.org/abs/2603.22106
 
 要は LLM との意思疎通ができていない。プロジェクトにおいて考慮されるべきことを明文化できないのか、コンテキストから抜け落ちてしまっているのか、様々な理由でメンバーである LLM に伝わっていない。そうなると LLM はタスク達成のために学習済みの一般的な判断を適用して、プロジェクトにそぐわないものをこさえてくる。人間が認識している範囲では意図通りに動くもんだから、そのまま認識外の挙動や設計も一緒にコードベースへ埋め込まれてしまう、という塩梅だ。
 
@@ -210,7 +210,7 @@ blip ではサンドボックス内での実験と、作成済みのもののカ
 
 仕様駆動開発は広義に捉えたうえでの一流派であれば通用する可能性がある。次で言うところの Spec-anchored かつ、 requirement SPECification 、つまり要件定義まで含む場合だ。
 
-{{ card(url="https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html") }}
+https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html
 
 ただ、人によって定義が異なるものを引き合いに出す必要があるのかどうか、指摘されたら上の記事を挙げながら説明する、くらいでいいだろう。
 
@@ -222,7 +222,7 @@ swarm は大群、まさに数十以上のエージェントをチームとし�
 
 何を当たり前のことを、という blip なんだが、一点だけ建設的な議論をすると複数エージェントが動く場合にまず対処すべきことは各モデルが持っているバイアス。
 
-{{ card(url="https://arxiv.org/abs/2410.02736") }}
+https://arxiv.org/abs/2410.02736
 
 この論文は LLM as a Judge というユースケースで発現するバイアスを調べた研究。コードレビューも LLM as a Judge と似た側面を持つタスクと捉えると、ここで紹介されている各バイアスを抑え込めるような構成を組むと迷走を抑えることに寄与する可能性がある。
 
@@ -268,7 +268,7 @@ CLI で同様のことはできるので MCP である意味を考えよ、と�
 
 評価する方法はわかりやすいところではフォーマッターやリンターなど。こういった決定論的に動作するツール以外に、次のような自動コードレビューなども応用としてアリだ。
 
-{{ card(url="https://zenn.dev/beingish/articles/0a3f09449cb869") }}
+https://zenn.dev/beingish/articles/0a3f09449cb869
 
 :::message
 
@@ -290,7 +290,7 @@ CLI で同様のことはできるので MCP である意味を考えよ、と�
 
 初登場。
 
-{{ card(url="https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html") }}
+https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html
 
 コーディングエージェントとのやりとりを振り返って、指示として明文化してまた試す、というのが基本プロセスのようだ。アジャイル開発におけるイテレーション最後の振り返りと同様の立ち位置となる。プロンプトごとに振り返りを回すので頻度は多いが。
 
@@ -318,7 +318,7 @@ CLI で同様のことはできるので MCP である意味を考えよ、と�
 
 引き続き LLM が悪さできてしまう条件を成立させないように、というもの。そのための概念として lethal trifecta が紹介されている。
 
-{{ card(url="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/") }}
+https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
 
 1. 安全でない指示の入力
 2. 機微情報へのアクセス
@@ -400,7 +400,7 @@ Apache Kafka の Web UI 。 Kafka を使っているなら一緒に使うのが�
 
 Assess で初登場。
 
-{{ card(url="https://github.com/snyk/agent-scan") }}
+https://github.com/snyk/agent-scan
 
 Snyk 社が提供しているエージェント向けセキュリティスキャナー。 MCP や Skills などを見て危ないところを教えてくれる。
 
@@ -410,7 +410,7 @@ Snyk 社が提供しているエージェント向けセキュリティスキャ
 
 Assess 初登場。
 
-{{ card(url="https://codescene.com/") }}
+https://codescene.com/
 
 開発プロセスのメタデータを分析するためのツール。コードの複雑度と git の変更履歴をもとに、 LLM が編集をミスりやすいコードを特定したり、特定の開発者しか触らないコードを可視化したりと、技術的負債を把握するために役立つ。
 
@@ -464,6 +464,6 @@ Databricks の IaC ツール。 Databricks 使ってるなら一緒にどうぞ�
 
 2024 年初出だが最近は Trial 止まり。
 
-{{ card(url="https://github.com/BerriAI/litellm") }}
+https://github.com/BerriAI/litellm
 
 様々な LLM を OpenAI 互換 API で呼び出せるようにするもの。リトライやロードバランシング、トレース記録やレートリミットなどもかけられるので、一枚かましておくだけで LLM アプリの開発に必要なものが揃う。
