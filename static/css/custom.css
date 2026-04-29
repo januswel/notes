@@ -149,32 +149,17 @@ blockquote {
 
 /* suCSS の img デフォルト（dashed 枠 / padding / opacity / max-width / radius）を上書き */
 .link-card__image {
-  flex: 0 0 auto;
-  width: 200px;
-  max-width: 200px;
-  aspect-ratio: 1.91 / 1;
-  object-fit: contain;
-  background: color-mix(in srgb, var(--text) 6%, transparent);
   border: 0;
   padding: 0;
   opacity: 1;
   border-radius: 0;
 }
 
-.link-card__image--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0.5rem;
-  font-size: 0.85rem;
-  color: color-mix(in srgb, var(--text) 70%, transparent);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--accent, currentColor) 12%, var(--bg)),
-    color-mix(in srgb, var(--accent, currentColor) 4%, var(--bg))
-  );
-  word-break: break-all;
+img.link-card__image {
+  flex: 0 0 auto;
+  max-height: 9.6rem;
+  object-fit: contain;
+  align-self: center;
 }
 
 @media (max-width: 720px) {
@@ -182,9 +167,12 @@ blockquote {
     flex-direction: column;
   }
 
-  .link-card__image {
+  /* 縦並びでは max-height を無効化して横幅一杯 + OG 標準で高さを抑える */
+  img.link-card__image {
     order: -1;
     width: 100%;
-    max-width: 100%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 1.91 / 1;
   }
 }
