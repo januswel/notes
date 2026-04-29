@@ -153,11 +153,28 @@ blockquote {
   width: 200px;
   max-width: 200px;
   aspect-ratio: 1.91 / 1;
-  object-fit: cover;
+  object-fit: contain;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
   border: 0;
   padding: 0;
   opacity: 1;
   border-radius: 0;
+}
+
+.link-card__image--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent, currentColor) 12%, var(--bg)),
+    color-mix(in srgb, var(--accent, currentColor) 4%, var(--bg))
+  );
+  word-break: break-all;
 }
 
 @media (max-width: 720px) {

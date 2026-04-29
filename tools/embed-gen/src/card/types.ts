@@ -8,7 +8,7 @@ export interface CardRecord {
   title?: string;
   description?: string;
   siteName?: string;
-  /** /link-cards/<sha1>.<ext> 形式の絶対パス（サイトルート起点）。なければ未設定 */
+  /** og:image の絶対 URL。なければ未設定 */
   image?: string;
   error?: string;
   /** true の場合、--refresh / --refresh-failed 問わず常に fetch をスキップする。

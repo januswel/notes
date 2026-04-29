@@ -2,104 +2,104 @@
   "https://agentskills.io/specification": {
     "url": "https://agentskills.io/specification",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:09.734Z",
+    "fetchedAt": "2026-04-29T07:45:18.274Z",
     "title": "Specification - Agent Skills",
     "description": "The complete format specification for Agent Skills.",
-    "image": "/link-cards/d4ec7315cab50e49.png"
+    "image": "https://agent-skills.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DDocumentation%26title%3DSpecification%26description%3DThe%2Bcomplete%2Bformat%2Bspecification%2Bfor%2BAgent%2BSkills.%26primaryColor%3D%25237f7f7f%26lightColor%3D%2523bfbfbf%26darkColor%3D%2523404040%26backgroundLight%3D%2523ffffff%26backgroundDark%3D%25230d0d0f&w=1200&q=100"
   },
   "https://alignment.anthropic.com/2026/psm/": {
     "url": "https://alignment.anthropic.com/2026/psm/",
     "status": "ok",
-    "fetchedAt": "2026-04-10T14:12:47.118Z",
+    "fetchedAt": "2026-04-29T07:45:07.534Z",
     "title": "The Persona Selection Model: Why AI Assistants might Behave like Humans"
   },
   "https://arxiv.org/abs/2410.02736": {
     "url": "https://arxiv.org/abs/2410.02736",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:17.174Z",
+    "fetchedAt": "2026-04-29T07:45:24.734Z",
     "title": "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
     "description": "LLM-as-a-Judge has been widely utilized as an evaluation method in various benchmarks and served as supervised rewards in model training. However, despite their excellence in many domains, potential issues are under-explored, undermining their reliability and the scope of their utility. Therefore, we identify 12 key potential biases and propose a new automated bias quantification framework-CALM-which systematically quantifies and analyzes each type of bias in LLM-as-a-Judge by using automated and principle-guided modification. Our experiments cover multiple popular language models, and the results indicate that while advanced models have achieved commendable overall performance, significant biases persist in certain specific tasks. Empirical results suggest that there remains room for improvement in the reliability of LLM-as-a-Judge. Moreover, we also discuss the explicit and implicit influence of these biases and give some suggestions for the reliable application of LLM-as-a-Judge. Our work highlights the need for stakeholders to address these issues and remind users to exercise caution in LLM-as-a-Judge applications.",
     "siteName": "arXiv.org",
-    "image": "/link-cards/ec490c902cc3440a.png"
+    "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
   },
   "https://arxiv.org/abs/2601.07190": {
     "url": "https://arxiv.org/abs/2601.07190",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:10.471Z",
+    "fetchedAt": "2026-04-29T07:45:18.890Z",
     "title": "Active Context Compression: Autonomous Memory Management in LLM Agents",
     "description": "Large Language Model (LLM) agents struggle with long-horizon software engineering tasks due to \"Context Bloat.\" As interaction history grows, computational costs explode, latency increases, and reasoning capabilities degrade due to distraction by irrelevant past errors. Existing solutions often rely on passive, external summarization mechanisms that the agent cannot control. This paper proposes Focus, an agent-centric architecture inspired by the biological exploration strategies of Physarum polycephalum (slime mold). The Focus Agent autonomously decides when to consolidate key learnings into a persistent \"Knowledge\" block and actively withdraws (prunes) the raw interaction history. Using an optimized scaffold matching industry best practices (persistent bash + string-replacement editor), we evaluated Focus on N=5 context-intensive instances from SWE-bench Lite using Claude Haiku 4.5. With aggressive prompting that encourages frequent compression, Focus achieves 22.7% token reduction (14.9M -> 11.5M tokens) while maintaining identical accuracy (3/5 = 60% for both agents). Focus performed 6.0 autonomous compressions per task on average, with token savings up to 57% on individual instances. We demonstrate that capable models can autonomously self-regulate their context when given appropriate tools and prompting, opening pathways for cost-aware agentic systems without sacrificing task performance.",
     "siteName": "arXiv.org",
-    "image": "/link-cards/ec490c902cc3440a.png"
+    "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
   },
   "https://arxiv.org/abs/2602.11988": {
     "url": "https://arxiv.org/abs/2602.11988",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:14.440Z",
+    "fetchedAt": "2026-04-29T07:45:22.538Z",
     "title": "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?",
     "description": "A widespread practice in software development is to tailor coding agents to repositories using context files, such as AGENTS.md, by either manually or automatically generating them. Although this practice is strongly encouraged by agent developers, there is currently no rigorous investigation into whether such context files are actually effective for real-world tasks. In this work, we study this question and evaluate coding agents' task completion performance in two complementary settings: established SWE-bench tasks from popular repositories, with LLM-generated context files following agent-developer recommendations, and a novel collection of issues from repositories containing developer-committed context files.\n  Across multiple coding agents and LLMs, we find that context files tend to reduce task success rates compared to providing no repository context, while also increasing inference cost by over 20%. Behaviorally, both LLM-generated and developer-provided context files encourage broader exploration (e.g., more thorough testing and file traversal), and coding agents tend to respect their instructions. Ultimately, we conclude that unnecessary requirements from context files make tasks harder, and human-written context files should describe only minimal requirements.",
     "siteName": "arXiv.org",
-    "image": "/link-cards/ec490c902cc3440a.png"
+    "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
   },
   "https://arxiv.org/abs/2603.22106": {
     "url": "https://arxiv.org/abs/2603.22106",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:14.859Z",
+    "fetchedAt": "2026-04-29T07:45:22.964Z",
     "title": "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI",
     "description": "Generative AI is accelerating software development, but may quietly shift where the most significant risks lie. As AI generates code faster than teams can understand it, two under appreciated forms of debt accumulate: cognitive debt, the erosion of shared understanding across a team, and intent debt, the absence of externalized rationale that developers and AI agents need to work safely with code. This article proposes a Triple Debt Model for reasoning about software health, built around three interacting debt types: technical debt in code, cognitive debt in people, and intent debt in externalized knowledge. Cognitive debt is a team-level, project-level property reflecting the erosion of shared understanding across a software system over time, leading to increasingly inadequate shared mental models for reasoning about and safely changing the system. Intent debt refers to the absence or erosion of explicit rationale, goals, and constraints that guide how humans and agents evolve the system. We discuss how generative AI changes the relative importance of these debt types, how each can be diagnosed and mitigated, and surface points of debate for practitioners.",
     "siteName": "arXiv.org",
-    "image": "/link-cards/ec490c902cc3440a.png"
+    "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
   },
   "https://codescene.com/": {
     "url": "https://codescene.com/",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:23.141Z",
+    "fetchedAt": "2026-04-29T07:45:30.207Z",
     "title": "Scale AI Coding Safely and Mitigate Technical Debt | CodeScene",
     "description": "Scale AI coding safely without sacrificing quality and amplifying technical debt. Translate Code Health improvements into business impact.",
-    "image": "/link-cards/f4e477b330b5bbbf.png"
+    "image": "https://codescene.com/hubfs/Featured%20image%20-%20Product.png"
   },
   "https://github.com/BerriAI/litellm": {
     "url": "https://github.com/BerriAI/litellm",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:26.030Z",
+    "fetchedAt": "2026-04-29T07:45:31.567Z",
     "title": "GitHub - BerriAI/litellm: Python SDK, Proxy Server (AI Gateway) to call 100+ LLM APIs in OpenAI (or native) format, with cost tracking, guardrails, loadbalancing and logging. [Bedrock, Azure, OpenAI, VertexAI, Cohere, Anthropic, Sagemaker, HuggingFace, VLLM, NVIDIA NIM]",
     "description": "Python SDK, Proxy Server (AI Gateway) to call 100+ LLM APIs in OpenAI (or native) format, with cost tracking, guardrails, loadbalancing and logging. [Bedrock, Azure, OpenAI, VertexAI, Cohere, Anthr...",
     "siteName": "GitHub",
-    "image": "/link-cards/0bec7c6ea94e87e1.png"
+    "image": "https://opengraph.githubassets.com/cfefa9fb8f8a6a4934600defa80efbe11cc70f0a1eedec78d0d879f70817f7a6/BerriAI/litellm"
   },
   "https://github.com/snyk/agent-scan": {
     "url": "https://github.com/snyk/agent-scan",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:22.187Z",
+    "fetchedAt": "2026-04-29T07:45:29.023Z",
     "title": "GitHub - snyk/agent-scan: Security scanner for AI agents, MCP servers and agent skills.",
     "description": "Security scanner for AI agents, MCP servers and agent skills. - snyk/agent-scan",
     "siteName": "GitHub",
-    "image": "/link-cards/a068f78bf3646837.png"
+    "image": "https://opengraph.githubassets.com/6b30ed9d8c5842dee26966e0d8035fc105fefec1b27e53332b9a12f410392232/snyk/agent-scan"
   },
   "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html": {
     "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:16.752Z",
+    "fetchedAt": "2026-04-29T07:45:24.195Z",
     "title": "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl",
     "description": "Notes from my Thoughtworks colleagues on AI-assisted software delivery",
     "siteName": "martinfowler.com",
-    "image": "/link-cards/11fc241948ed35df.png"
+    "image": "https://martinfowler.com/articles/exploring-gen-ai/donkey-card.png"
   },
   "https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html": {
     "url": "https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:18.954Z",
+    "fetchedAt": "2026-04-29T07:45:26.895Z",
     "title": "Feedback Flywheel",
     "siteName": "martinfowler.com",
-    "image": "/link-cards/fa4199f35d5a91ab.png"
+    "image": "https://martinfowler.com/logo-sq.png"
   },
   "https://news.yahoo.co.jp/articles/1643f26a3944aa20c151040410a3122157cb66c7": {
     "url": "https://news.yahoo.co.jp/articles/1643f26a3944aa20c151040410a3122157cb66c7",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:14.021Z",
+    "fetchedAt": "2026-04-29T07:45:22.057Z",
     "title": "LINEヤフーが「Yahoo! JAPAN ID」のログイン方法を「パスキー」に一本化、安全性と利便性を向上（Web担当者Forum） - Yahoo!ニュース",
     "description": "LINEヤフーは、同社が展開する「Yahoo! JAPAN」の各種サービスを利用するためのID「Yahoo! JAPAN ID」のログイン方法を「パスキー」に一本化する、と4月14日発表した。安全性",
     "siteName": "Yahoo!ニュース",
-    "image": "/link-cards/2db3a52245fafb8e.jpg"
+    "image": "https://newsatcl-pctr.c.yimg.jp/t/amd-img/20260415-00000008-webtan-000-2-view.jpg?exp=10800"
   },
   "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646": {
     "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646",
@@ -111,50 +111,49 @@
   "https://platform.claude.com/docs/en/build-with-claude/prompt-caching": {
     "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:12.635Z",
+    "fetchedAt": "2026-04-29T07:45:21.103Z",
     "title": "Prompt caching",
     "description": "Claude API Documentation",
-    "siteName": "Claude API Docs",
-    "image": "/link-cards/c16b1c94f7017896.png"
+    "siteName": "Claude API Docs"
   },
   "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/": {
     "url": "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:19.866Z",
+    "fetchedAt": "2026-04-29T07:45:27.561Z",
     "title": "The lethal trifecta for AI agents: private data, untrusted content, and external communication",
     "description": "If you are a user of LLM systems that use tools (you can call them “AI agents” if you like) it is critically important that you understand the risk of …",
     "siteName": "Simon Willison’s Weblog",
-    "image": "/link-cards/889bb7e3b96af3c4.jpg"
+    "image": "https://static.simonwillison.net/static/2025/lethaltrifecta.jpg"
   },
   "https://transformer-circuits.pub/2026/emotions/index.html": {
     "url": "https://transformer-circuits.pub/2026/emotions/index.html",
     "status": "ok",
-    "fetchedAt": "2026-04-10T14:12:56.859Z",
+    "fetchedAt": "2026-04-29T07:45:12.610Z",
     "title": "Emotion Concepts and their Function in a Large Language Model"
   },
   "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents": {
     "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:08.504Z",
+    "fetchedAt": "2026-04-29T07:45:17.055Z",
     "title": "Effective context engineering for AI agents",
     "description": "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
-    "image": "/link-cards/c873ed39724dc719.png"
+    "image": "https://cdn.sanity.io/images/4zrzovbb/website/ea2bf01aa874d7ab776453e97dfeed5d2bf5a116-2400x1260.png"
   },
   "https://www.thoughtworks.com/radar": {
     "url": "https://www.thoughtworks.com/radar",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:03.239Z",
+    "fetchedAt": "2026-04-29T07:45:13.056Z",
     "title": "Technology Radar | Guide to technology landscape",
     "description": "The Technology Radar is an opinionated guide to today's technology landscape. Read the latest here.",
     "siteName": "Thoughtworks",
-    "image": "/link-cards/d0112e7a705f7394.jpg"
+    "image": "https://www.thoughtworks.com/content/dam/thoughtworks/images/photography/meta/insights/radar/in_meta_tr34_meta.jpg"
   },
   "https://zenn.dev/beingish/articles/0a3f09449cb869": {
     "url": "https://zenn.dev/beingish/articles/0a3f09449cb869",
     "status": "ok",
-    "fetchedAt": "2026-04-29T05:54:18.275Z",
+    "fetchedAt": "2026-04-29T07:45:25.828Z",
     "title": "Claude Code Hooks を使ってコードレビューや品質向上をシフトレフトする",
     "siteName": "Zenn",
-    "image": "/link-cards/9cb18e92d9c79787.png"
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--Rq9fE8SB--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Claude%2520Code%2520Hooks%2520%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6%25E3%2582%25B3%25E3%2583%25BC%25E3%2583%2589%25E3%2583%25AC%25E3%2583%2593%25E3%2583%25A5%25E3%2583%25BC%25E3%2582%2584%25E5%2593%2581%25E8%25B3%25AA%25E5%2590%2591%25E4%25B8%258A%25E3%2582%2592%25E3%2582%25B7%25E3%2583%2595%25E3%2583%2588%25E3%2583%25AC%25E3%2583%2595%25E3%2583%2588%25E3%2581%2599%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:januswel%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2EwNzcxOWM2YzMuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:%25E6%25A0%25AA%25E5%25BC%258F%25E4%25BC%259A%25E7%25A4%25BE%2520being-ish%2Cx_220%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2hPWVhXdlBhLXJBNGJEd1V3Vnhfb0c2UmJnZUFQYnpNVllKMk1MPXM5Ni1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   }
 }

@@ -1,22 +1,14 @@
-import {
-  readdirSync,
-  readFileSync,
-  unlinkSync,
-  existsSync,
-  writeFileSync,
-} from "fs";
 import { join } from "path";
 import { collectUrls } from "../shared/collect-urls.js";
 import { loadCache, saveCache, type Cache } from "../shared/cache.js";
 import { touchMarkdownFiles } from "../shared/touch.js";
 import { extractMeta } from "./extract.js";
-import { fetchPage, downloadAsset, assetExists } from "./fetch-page.js";
+import { fetchPage, isImageUsable } from "./fetch-page.js";
 import type { CardRecord } from "./types.js";
 
 const SHORTCODE_PATTERN =
   /\{\{\s*card\s*\(\s*url\s*=\s*"([^"]+)"\s*\)\s*\}\}/g;
 const TOUCH_PATTERN = /\{\{\s*card\s*\(/;
-const PUBLIC_PREFIX = "/link-cards";
 
 type CardCache = Cache<CardRecord>;
 
@@ -30,7 +22,6 @@ export interface RunOpts {
 async function processUrl(
   rawUrl: string,
   cache: CardCache,
-  assetsDir: string,
   refreshAll: boolean,
   refreshFailed: boolean
 ): Promise<boolean> {
@@ -43,14 +34,9 @@ async function processUrl(
     return false;
   }
 
-  // 既に成功キャッシュがあり、画像ファイルも残っているならスキップ
   if (existing && existing.status === "ok" && !refreshAll) {
-    const imageOk = !existing.image || assetExists(assetsDir, existing.image);
-    if (imageOk) {
-      console.log(`  cached: ${key}`);
-      return false;
-    }
-    console.log(`  re-download assets: ${key}`);
+    console.log(`  cached: ${key}`);
+    return false;
   }
 
   if (existing && existing.status === "failed" && !refreshFailed) {
@@ -63,10 +49,11 @@ async function processUrl(
     const { finalUrl, html } = await fetchPage(key);
     const meta = extractMeta(html, finalUrl);
 
-    const image = meta.imageUrl
-      ? await downloadAsset(meta.imageUrl, assetsDir, PUBLIC_PREFIX)
-      : undefined;
-
+    let image = meta.imageUrl;
+    if (image && !(await isImageUsable(image))) {
+      console.log(`    image not usable (skip): ${image}`);
+      image = undefined;
+    }
     const record: CardRecord = {
       url: key,
       status: "ok",
@@ -91,27 +78,6 @@ async function processUrl(
   return true;
 }
 
-function cleanupOrphans(cache: CardCache, assetsDir: string): void {
-  if (!existsSync(assetsDir)) return;
-  const referenced = new Set<string>();
-  for (const record of Object.values(cache)) {
-    if (record.status !== "ok") continue;
-    if (record.image) referenced.add(record.image.split("/").pop() ?? "");
-  }
-  let removed = 0;
-  for (const filename of readdirSync(assetsDir)) {
-    if (!referenced.has(filename)) {
-      try {
-        unlinkSync(join(assetsDir, filename));
-        removed++;
-      } catch {
-        // ignore
-      }
-    }
-  }
-  if (removed > 0) console.log(`  cleaned up ${removed} orphan asset(s)`);
-}
-
 function pruneOrphanCacheKeys(cache: CardCache, urls: string[]): number {
   const referenced = new Set(urls);
   let removed = 0;
@@ -128,7 +94,6 @@ export async function runCards(opts: RunOpts): Promise<void> {
   console.log("embed-gen[card]: fetch phase");
   const contentDir = join(opts.baseDir, "content");
   const cachePath = join(opts.toolDir, "cache/cards.json");
-  const assetsDir = join(opts.baseDir, "static/link-cards");
 
   const urls = collectUrls(contentDir, SHORTCODE_PATTERN);
   console.log(`  found ${urls.length} card URL(s) in content/`);
@@ -138,7 +103,7 @@ export async function runCards(opts: RunOpts): Promise<void> {
 
   for (const url of urls) {
     try {
-      if (await processUrl(url, cache, assetsDir, opts.refreshAll, opts.refreshFailed))
+      if (await processUrl(url, cache, opts.refreshAll, opts.refreshFailed))
         mutated = true;
       await new Promise((r) => setTimeout(r, 250));
     } catch (err) {
@@ -152,7 +117,6 @@ export async function runCards(opts: RunOpts): Promise<void> {
     mutated = true;
   }
 
-  cleanupOrphans(cache, assetsDir);
   saveCache(cachePath, cache);
   console.log(`  wrote ${cachePath}`);
 

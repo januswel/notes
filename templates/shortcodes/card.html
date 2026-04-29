@@ -17,7 +17,9 @@
       </div>
     </div>
     {%- if record.image %}
-    <img class="link-card__image" src="{{ record.image | safe }}" alt="" loading="lazy" decoding="async">
+    <img class="link-card__image" src="{{ record.image | safe }}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+    {%- else %}
+    <div class="link-card__image link-card__image--placeholder">{{ hostname }}</div>
     {%- endif %}
   </a>
 {%- else -%}
