@@ -50,6 +50,12 @@ h4 + * {
   margin-top: 1.0rem;
 }
 
+/* 見出しに付く自動アンカーリンク (insert_anchor_links = "right") */
+.zola-anchor {
+  margin-left: 0.25em;
+  font-size: 0.8em;
+}
+
 /* ナビゲーション：左寄せ、テーマ切替：右寄せ */
 #nav-bar {
   justify-content: flex-start;
