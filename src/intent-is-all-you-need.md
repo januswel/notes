@@ -55,4 +55,6 @@ https://arxiv.org/abs/2603.22106
 
 たぶん一番コスパのいい介入は PRD や design doc 、 ADR など、今まで実績のあるフォーマットで文書を書いて LLM に読ませていくこと。仕様駆動開発はまだ [Spec-first](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html) のものが多いし、そこを LLM に書かせると AI slop によってメンテできなくなるのでやめたほうが良い。使ったとして、各フォーマットがどういうものなのかやテンプレートの調整、例を書かせてみる、書く際の個別事項の相談などに留めると良いだろう。
 
-できるところ、わかる範囲でいいので書いていくことが大切だと思っている。 coding agent に書かせてみて、そこから学ぶところがあれば書き足していく形で良い。まず書き足せる場所を作るのが何より大事だ。
+できるところ、わかる範囲でいいので書いていくことが大切だと思っている。 coding agent に書かせてみて、そこから学ぶところがあれば書き足していく形で良い。まず書き足せる場所を作るのが何より大事だ。 [ThoughtWorks でもコンテキストへの入力を明文化しておくというアプローチに一定の効果がある](https://martinfowler.com/articles/reduce-friction-ai/context-anchoring.html)とか[開発者が持つ暗黙知を表出化させるのが重要](https://martinfowler.com/articles/reduce-friction-ai/encoding-team-standards.html)というハナシをしている。
+
+ただし、コードと内容が重複するドキュメントはメンテナンス難度を上げるだけなので避けたほうが良い。アジャイル開発の文脈における「必要なドキュメント」が何かを見極めて書いていく必要がある。
