@@ -11,6 +11,21 @@ import { globSync } from "glob";
 import chokidar from "chokidar";
 
 const URL_LINE = /^https?:\/\/\S+$/;
+const INLINE_URL = /(?<!\]\()(?<![="'])https?:\/\/[^\s<>"'`]+/g;
+const TRAIL_PUNCT = /[.,;:!?]+$/;
+
+function wrapInlineUrls(line: string): string {
+  return line.replace(INLINE_URL, (match) => {
+    const trimmed = match.replace(TRAIL_PUNCT, "");
+    const trail = match.slice(trimmed.length);
+    try {
+      new URL(trimmed);
+    } catch {
+      return match;
+    }
+    return `<a href="${trimmed}" target="_blank" rel="noreferrer noopener">${trimmed}</a>${trail}`;
+  });
+}
 
 function urlToShortcode(url: string): string {
   try {
@@ -46,11 +61,17 @@ export function transformMd(text: string): string {
     }
     if (inCodeFence) continue;
 
-    if (!URL_LINE.test(raw)) continue;
+    if (!URL_LINE.test(raw)) {
+      lines[i] = wrapInlineUrls(raw);
+      continue;
+    }
 
     const prev = i === 0 ? "" : lines[i - 1];
     const next = i === lines.length - 1 ? "" : lines[i + 1];
-    if (prev.trim() !== "" || next.trim() !== "") continue;
+    if (prev.trim() !== "" || next.trim() !== "") {
+      lines[i] = wrapInlineUrls(raw);
+      continue;
+    }
 
     try {
       new URL(raw);
