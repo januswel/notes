@@ -22,6 +22,15 @@
     "siteName": "arXiv.org",
     "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
   },
+  "https://arxiv.org/abs/2510.03178": {
+    "url": "https://arxiv.org/abs/2510.03178",
+    "status": "ok",
+    "fetchedAt": "2026-05-04T11:28:32.750Z",
+    "title": "When Names Disappear: Revealing What LLMs Actually Understand About Code",
+    "description": "Large Language Models (LLMs) achieve strong results on code tasks, but how they derive program meaning remains unclear. We argue that code communicates through two channels: structural semantics, which define formal behavior, and human-interpretable naming, which conveys intent. Removing the naming channel severely degrades intent-level tasks such as summarization, where models regress to line-by-line descriptions. Surprisingly, we also observe consistent reductions on execution tasks that should depend only on structure, revealing that current benchmarks reward memorization of naming patterns rather than genuine semantic reasoning. To disentangle these effects, we introduce a suite of semantics-preserving obfuscations and show that they expose identifier leakage across both summarization and execution. Building on these insights, we release ClassEval-Obf, an obfuscation-enhanced benchmark that systematically suppresses naming cues while preserving behavior. Our results demonstrate that ClassEval-Obf reduces inflated performance gaps, weakens memorization shortcuts, and provides a more reliable basis for assessing LLMs' code understanding and generalization.",
+    "siteName": "arXiv.org",
+    "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
+  },
   "https://arxiv.org/abs/2601.07190": {
     "url": "https://arxiv.org/abs/2601.07190",
     "status": "ok",
