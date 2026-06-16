@@ -9,7 +9,7 @@ https://www.thoughtworks.com/radar
 
 [Preview は YouTube で公開されている](https://www.youtube.com/playlist?list=PL8f-F_Zx8XA-mWFSMGFbXx4UYWZIjFxy4)。
 
-[Technology Radar についてはここにまとめている](https://zenn.dev/januswel/articles/d3b2c23bcbcd6f)。
+[Technology Radar についてはここにまとめている](https://zenn.dev/beingish/articles/d3b2c23bcbcd6f)。
 
 この記事では次のことがわかる。
 
