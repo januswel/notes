@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="src/*.md の外部デッドリンクを lychee で検出"
+
+lychee src/*.md

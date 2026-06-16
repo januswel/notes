@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#MISE description="preprocess watch + zola serve"
+
+# watcher をバックグラウンドで起動し、スクリプト終了時に trap で一緒に止める
+(cd tools/embed-gen && npm run watch) &
+WATCHER=$!
+trap 'kill $WATCHER 2>/dev/null' EXIT
+
+zola serve

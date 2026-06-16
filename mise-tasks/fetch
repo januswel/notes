@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="card / x-post の oEmbed / OG メタデータを取得・キャッシュ"
+#MISE dir="tools/embed-gen"
+
+npm run fetch -- "$@"
