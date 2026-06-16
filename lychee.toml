@@ -1,0 +1,17 @@
+# 外部デッドリンク検出の設定。check:links タスクから自動で読まれる。
+
+scheme = ["http", "https"]
+exclude_all_private = true
+
+# ヘッドレスだと弾かれる・遅いサイト対策
+user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+timeout = 30
+max_retries = 2
+
+# Cloudflare の対話型人間確認で HTTP からは 403 になるが、人間確認済みで生きている。
+# 将来ページ自体が消えても検出できない点に留意し、たまに手で見る。
+exclude = [
+  'papers\.ssrn\.com',
+  'perplexity\.ai',
+  'medium\.com',
+]

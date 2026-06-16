@@ -1,5 +1,6 @@
 [tools]
 node = "24"
+"aqua:lycheeverse/lychee" = "latest"
 
 [tasks.dev]
 description = "preprocess watch + zola serve"
@@ -23,3 +24,7 @@ zola serve --interface 0.0.0.0 --base-url http://mini.local
 description = "card / x-post の oEmbed / OG メタデータを取得・キャッシュ"
 dir = "tools/embed-gen"
 run = "npm run fetch --"
+
+[tasks."check:links"]
+description = "src/*.md の外部デッドリンクを lychee で検出"
+run = "lychee src/*.md"
