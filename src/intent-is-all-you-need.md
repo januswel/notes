@@ -46,7 +46,7 @@ https://arxiv.org/abs/2603.22106
 
 ここでいう intent debt とはざっくり一言でいうと、コードを書くときに必要な情報に人間も LLM もアクセスできないことを指している。実際は要求、仕様、アーキテクチャー、テストなどが存在しない、もしくは権限不足や類推できない位置にあるなどでアクセスできないという状態。この状態でコード書かせたら coding agent だけでなく人間であっても思ってたんと違う、となるのは当たり前だ。
 
-また、 intent debt が cognitive debt 、つまりソフトウェアへの理解を阻害していることも指摘されている。まあ intent debt / cognitive debt / technical debt それぞれがそれぞれを増幅するというパスがあるのだが、たぶん最初は LLM による intent debt が発生、からの気づかずに蓄積し cognitive debt / technical debt へという流れだと思う。気づかない、というあたりは [cognitive surrender](http://127.0.0.1:1111/conscious-of-the-unconscious/) の文脈。アジャイル開発の文脈では実践することによって情報を取得し、そこでまた判断をし、というプロセスがあったが、 coding agent を使いながらの開発ではひとりでずっと debt を溜め込んでしまい、どうにもならなくなるところまで気づかないという可能性もありうる。
+また、 intent debt が cognitive debt 、つまりソフトウェアへの理解を阻害していることも指摘されている。まあ intent debt / cognitive debt / technical debt それぞれがそれぞれを増幅するというパスがあるのだが、たぶん最初は LLM による intent debt が発生、からの気づかずに蓄積し cognitive debt / technical debt へという流れだと思う。気づかない、というあたりは [cognitive surrender](@/conscious-of-the-unconscious.md) の文脈。アジャイル開発の文脈では実践することによって情報を取得し、そこでまた判断をし、というプロセスがあったが、 coding agent を使いながらの開発ではひとりでずっと debt を溜め込んでしまい、どうにもならなくなるところまで気づかないという可能性もありうる。
 
 
 ## 意図を明文化していこう
