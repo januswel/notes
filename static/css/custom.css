@@ -82,6 +82,24 @@ blockquote {
   padding: 0 0 0 1rem;
 }
 
+/* 404 ページ */
+body:has(.not-found) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+body:has(.not-found) main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found {
+  text-align: center;
+}
+
 /* リンクカード */
 .link-card {
   display: flex;
