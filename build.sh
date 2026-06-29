@@ -2,8 +2,8 @@
 set -e
 
 if [ -n "$CI" ]; then
-  ZOLA_VERSION="${ZOLA_VERSION:-0.20.0}"
-  curl -sL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" | tar xz
+  ZOLA_VERSION="${ZOLA_VERSION:-0.22.1}"
+  curl -fL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" | tar xz
   export PATH="$PWD:$PATH"
 fi
 
