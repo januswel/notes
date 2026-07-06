@@ -84,6 +84,12 @@
     "siteName": "GitHub",
     "image": "https://opengraph.githubassets.com/6b30ed9d8c5842dee26966e0d8035fc105fefec1b27e53332b9a12f410392232/snyk/agent-scan"
   },
+  "https://ja.wikipedia.org/wiki/%E6%88%A6%E5%A0%B4%E3%81%AE%E9%9C%A7": {
+    "url": "https://ja.wikipedia.org/wiki/%E6%88%A6%E5%A0%B4%E3%81%AE%E9%9C%A7",
+    "status": "ok",
+    "fetchedAt": "2026-07-06T12:50:55.582Z",
+    "title": "戦場の霧 - Wikipedia"
+  },
   "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html": {
     "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
     "status": "ok",

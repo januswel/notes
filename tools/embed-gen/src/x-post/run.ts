@@ -2,11 +2,10 @@ import { join } from "path";
 import { collectUrls } from "../shared/collect-urls.js";
 import { loadCache, saveCache, type Cache } from "../shared/cache.js";
 import { touchMarkdownFiles } from "../shared/touch.js";
+import { XPOST_SHORTCODE_PATTERN } from "../shared/patterns.js";
 import { fetchOEmbed } from "./fetch-oembed.js";
 import type { PostRecord } from "./types.js";
 
-const SHORTCODE_PATTERN =
-  /\{\{\s*x_post\s*\(\s*url\s*=\s*"([^"]+)"\s*\)\s*\}\}/g;
 const TOUCH_PATTERN = /\{\{\s*x_post\s*\(/;
 
 type PostCache = Cache<PostRecord>;
@@ -77,7 +76,7 @@ export async function runXPosts(opts: RunOpts): Promise<void> {
   const contentDir = join(opts.baseDir, "content");
   const cachePath = join(opts.toolDir, "cache/posts.json");
 
-  const urls = collectUrls(contentDir, SHORTCODE_PATTERN);
+  const urls = collectUrls(contentDir, XPOST_SHORTCODE_PATTERN);
   console.log(`  found ${urls.length} x_post URL(s) in content/`);
 
   const cache = loadCache<PostRecord>(cachePath);
