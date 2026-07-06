@@ -2,12 +2,11 @@ import { join } from "path";
 import { collectUrls } from "../shared/collect-urls.js";
 import { loadCache, saveCache, type Cache } from "../shared/cache.js";
 import { touchMarkdownFiles } from "../shared/touch.js";
+import { CARD_SHORTCODE_PATTERN } from "../shared/patterns.js";
 import { extractMeta } from "./extract.js";
 import { fetchPage, isImageUsable } from "./fetch-page.js";
 import type { CardRecord } from "./types.js";
 
-const SHORTCODE_PATTERN =
-  /\{\{\s*card\s*\(\s*url\s*=\s*"([^"]+)"\s*\)\s*\}\}/g;
 const TOUCH_PATTERN = /\{\{\s*card\s*\(/;
 
 type CardCache = Cache<CardRecord>;
@@ -95,7 +94,7 @@ export async function runCards(opts: RunOpts): Promise<void> {
   const contentDir = join(opts.baseDir, "content");
   const cachePath = join(opts.toolDir, "cache/cards.json");
 
-  const urls = collectUrls(contentDir, SHORTCODE_PATTERN);
+  const urls = collectUrls(contentDir, CARD_SHORTCODE_PATTERN);
   console.log(`  found ${urls.length} card URL(s) in content/`);
 
   const cache = loadCache<CardRecord>(cachePath);

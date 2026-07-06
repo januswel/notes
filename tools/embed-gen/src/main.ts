@@ -16,7 +16,7 @@ const contentDir = resolve(baseDir, "content");
 
 async function main() {
   if (watchMode) {
-    await runWatcher({ srcDir, outDir: contentDir });
+    await runWatcher({ srcDir, outDir: contentDir, toolDir });
     return;
   }
   await runPreprocess({ srcDir, outDir: contentDir });

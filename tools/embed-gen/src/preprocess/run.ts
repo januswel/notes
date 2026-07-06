@@ -9,6 +9,7 @@ import {
 import { join, relative, dirname, extname } from "path";
 import { globSync } from "glob";
 import chokidar from "chokidar";
+import { warnUncachedEmbeds } from "../shared/warn-uncached.js";
 
 const URL_LINE = /^https?:\/\/\S+$/;
 const INLINE_URL = /(?<!\]\()(?<![="'])https?:\/\/[^\s<>"'`]+/g;
@@ -119,6 +120,11 @@ export interface PreprocessOpts {
   outDir: string;
 }
 
+export interface WatcherOpts extends PreprocessOpts {
+  /** cache/ を含むツールルート。未取得埋め込みの warn 判定に使う。 */
+  toolDir: string;
+}
+
 export async function runPreprocess(opts: PreprocessOpts): Promise<void> {
   console.log("embed-gen[preprocess]: sync src/ → content/");
   const { srcDir, outDir } = opts;
@@ -148,11 +154,12 @@ export async function runPreprocess(opts: PreprocessOpts): Promise<void> {
   console.log(`  ${modified} file(s) updated`);
 }
 
-export async function runWatcher(opts: PreprocessOpts): Promise<void> {
-  const { srcDir, outDir } = opts;
+export async function runWatcher(opts: WatcherOpts): Promise<void> {
+  const { srcDir, outDir, toolDir } = opts;
 
   // 起動時に一度同期して orphan 掃除 + content/ を完全な状態にしてから watch
   await runPreprocess(opts);
+  warnUncachedEmbeds(outDir, toolDir);
 
   console.log(`embed-gen[preprocess]: watching ${srcDir}`);
 
@@ -167,6 +174,7 @@ export async function runWatcher(opts: PreprocessOpts): Promise<void> {
       const outPath = join(outDir, rel);
       if (processFile(srcPath, outPath)) {
         console.log(`[preprocess] write: ${rel}`);
+        warnUncachedEmbeds(outDir, toolDir);
       }
     } catch (err) {
       console.error(`[preprocess] error for ${srcPath}:`, err);
